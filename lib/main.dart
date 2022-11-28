@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tik_tol_clone_flutter/view/screens/auth/login_screen.dart';
+import 'package:tik_tol_clone_flutter/view/screens/auth/signup_screen.dart';
 
 import 'constant.dart';
 
@@ -15,10 +15,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: backgroundColor,
       ),
-      home: LoginScreen(),
+      home: SignUpScreen(),
     );
   }
 }
