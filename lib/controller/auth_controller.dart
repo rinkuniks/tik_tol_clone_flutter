@@ -7,6 +7,8 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tik_tol_clone_flutter/model/user.dart';
+import 'package:tik_tol_clone_flutter/view/screens/auth/login_screen.dart';
+import 'package:tik_tol_clone_flutter/view/screens/home_screen.dart';
 
 class AuthController extends GetxController {
   static AuthController instanse = Get.find();
@@ -60,10 +62,47 @@ class AuthController extends GetxController {
     return imageDwnUrl;
   }
 
-  pickImage() async{
+  pickImage() async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if(image == null) return;
-      final img = File(image.path);
-      proImg = img;
+    if (image == null) return;
+    final img = File(image.path);
+    proImg = img;
+  }
+
+  void login(String email, String password) async {
+    try {
+      if (email.isNotEmpty && password.isNotEmpty) {
+        await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password);
+      } else {
+        Get.snackbar(
+            "Error Login-in", "Please enter all the required fields..");
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+        Get.snackbar("Error Occurred", e.toString());
+      }
+    }
+  }
+
+  //User State persistence
+  late Rx<User?> _user;
+
+  @override
+  void onReady() {
+    super.onReady();
+    //Rx - Observable conti. checks that data in variable
+    _user = Rx<User?>(FirebaseAuth.instance.currentUser);
+    _user.bindStream(FirebaseAuth.instance.authStateChanges());
+    ever(_user, _setLoginView);
+  }
+
+  _setLoginView(User? user) {
+    if (user == null) {
+      Get.offAll(() => LoginScreen());
+    } else {
+      Get.offAll(() => HomeScreen());
+    }
   }
 }

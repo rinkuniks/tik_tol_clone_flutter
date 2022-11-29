@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tik_tol_clone_flutter/controller/auth_controller.dart';
 import 'package:tik_tol_clone_flutter/view/widgets/glitch.dart';
 import 'package:tik_tol_clone_flutter/view/widgets/text_input.dart';
 
@@ -48,7 +49,10 @@ class LoginScreen extends StatelessWidget {
               height: 30,
             ),
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  AuthController.instanse
+                      .login(_emailController.text, _passwordController.text);
+                },
                 child: Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 10),
