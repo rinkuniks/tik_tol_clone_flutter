@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tik_tol_clone_flutter/controller/auth_controller.dart';
 import 'package:tik_tol_clone_flutter/view/widgets/glitch.dart';
 import 'package:tik_tol_clone_flutter/view/widgets/text_input.dart';
 
@@ -6,8 +7,10 @@ class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
 
   TextEditingController _emailController = new TextEditingController();
+  TextEditingController _usernameController = new TextEditingController();
   TextEditingController _setPasswordController = new TextEditingController();
-  TextEditingController _confrimPasswordController = new TextEditingController();
+  TextEditingController _confrimPasswordController =
+      new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,30 +26,39 @@ class SignUpScreen extends StatelessWidget {
                   GlithEffect(
                     child: const Text(
                       'SignUp Screen',
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
                     ),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Stack(
-                    children:  [
-                      const CircleAvatar(
-                        backgroundImage: NetworkImage('https://www.seekpng.com/png/detail/402-4022635_avatar-generic-person-icon.png'),
-                        radius: 60,
-                      ),
-                      Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20)
-                              ),
-                              child: const Icon(Icons.edit, size: 30,
-                                color: Colors.black,)))
-                    ],
+                  InkWell(
+                    onTap: () {
+                      AuthController.instanse.pickImage();
+                    },
+                    child: Stack(
+                      children: [
+                        const CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              'https://www.seekpng.com/png/detail/402-4022635_avatar-generic-person-icon.png'),
+                          radius: 60,
+                        ),
+                        Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Container(
+                                padding: const EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: const Icon(
+                                  Icons.edit,
+                                  size: 30,
+                                  color: Colors.black,
+                                )))
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
@@ -88,7 +100,7 @@ class SignUpScreen extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextInputField(
-                        controller: _emailController,
+                        controller: _usernameController,
                         myIcon: Icons.person,
                         myLabelText: 'Username'),
                   ),
@@ -96,7 +108,13 @@ class SignUpScreen extends StatelessWidget {
                     height: 30,
                   ),
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        AuthController.instanse.signUp(
+                            _usernameController.text,
+                            _emailController.text,
+                            _setPasswordController.text,
+                            AuthController.instanse.proImg);
+                      },
                       child: Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 50, vertical: 10),
