@@ -6,11 +6,10 @@ import 'package:tik_tol_clone_flutter/view/widgets/text_input.dart';
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
 
-  TextEditingController _emailController = new TextEditingController();
-  TextEditingController _usernameController = new TextEditingController();
-  TextEditingController _setPasswordController = new TextEditingController();
-  TextEditingController _confrimPasswordController =
-      new TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _setPasswordController = TextEditingController();
+  TextEditingController _confrimPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
