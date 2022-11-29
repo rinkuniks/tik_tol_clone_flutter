@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tik_tol_clone_flutter/constant.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddVideoScreen extends StatelessWidget {
   const AddVideoScreen({Key? key}) : super(key: key);
@@ -9,7 +12,7 @@ class AddVideoScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: InkWell(
-          onTap: () {},
+          onTap: () => showDialogOption(context),
           child: Container(
             width: 190,
             height: 50,
@@ -29,5 +32,36 @@ class AddVideoScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+showDialogOption(BuildContext context) {
+  return showDialog(context: context, builder: (context) =>
+  SimpleDialog(
+    children: [
+      SimpleDialogOption(
+        onPressed: ()=> videoPick(ImageSource.gallery),
+        child:const Text('Gallery'),
+      ),
+      SimpleDialogOption(
+        onPressed: ()=> videoPick(ImageSource.camera),
+        child: const Text('Camera'),
+      ),
+      SimpleDialogOption(
+        onPressed: (){
+          Navigator.pop(context);
+        },
+        child: const Text('Close'),
+      ),
+    ],
+  ));
+}
+
+videoPick(ImageSource src)async {
+  final video = await ImagePicker().pickVideo(source: src);
+  if(video != null){
+    Get.snackbar('Video Selected', video.path);
+  }else{
+    Get.snackbar('Error selecting Video', 'Please choose a different video file..');
   }
 }
