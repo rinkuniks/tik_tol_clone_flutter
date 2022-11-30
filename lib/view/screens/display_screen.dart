@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/TikTokVideoPlayer.dart';
+import '../widgets/album_rotater.dart';
 import '../widgets/profile_butoon.dart';
 
 class DisplayVideoScreen extends StatelessWidget {
@@ -46,7 +47,7 @@ class DisplayVideoScreen extends StatelessWidget {
                 Positioned(
                   right: 10,
                   child: Container(
-                    height: MediaQuery.of(context).size.height - 500,
+                    height: MediaQuery.of(context).size.height - 400,
                     margin: EdgeInsets.only(
                         top: MediaQuery.of(context).size.height / 3, right: 10),
                     child: Column(
@@ -95,6 +96,10 @@ class DisplayVideoScreen extends StatelessWidget {
                               style:
                                   TextStyle(fontSize: 15, color: Colors.white),
                             ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            AlbumRotator(profilePicUrl: '',)
                           ],
                         ),
                       ],
