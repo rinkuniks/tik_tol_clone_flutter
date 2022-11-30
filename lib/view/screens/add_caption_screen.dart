@@ -40,6 +40,12 @@ class _AddCaptionScreenState extends State<AddCaptionScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    videoPlayerController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(

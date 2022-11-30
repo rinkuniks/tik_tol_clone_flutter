@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tik_tol_clone_flutter/constant.dart';
-import 'package:tik_tol_clone_flutter/view/screens/auth/add_caption_screen.dart';
+import 'package:tik_tol_clone_flutter/view/screens/add_caption_screen.dart';
 
 class AddVideoScreen extends StatelessWidget {
   const AddVideoScreen({Key? key}) : super(key: key);
