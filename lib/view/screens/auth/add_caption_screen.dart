@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'package:tik_tol_clone_flutter/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:tik_tol_clone_flutter/controller/upload_video_controller.dart';
 import 'package:tik_tol_clone_flutter/view/widgets/text_input.dart';
 import 'package:video_player/video_player.dart';
+import 'package:get/get.dart';
 
 class AddCaptionScreen extends StatefulWidget {
   File videoFile;
@@ -19,9 +21,11 @@ class AddCaptionScreen extends StatefulWidget {
 }
 
 class _AddCaptionScreenState extends State<AddCaptionScreen> {
+
   late VideoPlayerController videoPlayerController;
   TextEditingController songNameController = TextEditingController();
   TextEditingController captionController = TextEditingController();
+  VideoUploadController videoUploadController = Get.put(VideoUploadController());
 
   @override
   void initState() {
@@ -42,14 +46,26 @@ class _AddCaptionScreenState extends State<AddCaptionScreen> {
         child: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height / 1.4,
-              width: MediaQuery.of(context).size.width,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height / 1.4,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width,
               child: VideoPlayer(videoPlayerController),
             ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 4,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height / 4,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -68,14 +84,17 @@ class _AddCaptionScreenState extends State<AddCaptionScreen> {
                     height: 10,
                   ),
                   ElevatedButton(
-                      onPressed: (){
-
-                      },
-                        style:
-                            ElevatedButton.styleFrom(primary: buttonColor),
-                      child: const Text(
+                    onPressed: () {
+                      videoUploadController.uploadVideo(
+                          songNameController.text,
+                          captionController.text,
+                          widget.videoPath);
+                    },
+                    style:
+                    ElevatedButton.styleFrom(primary: buttonColor),
+                    child: const Text(
                         'Upload'),
-                      ),
+                  ),
                 ],
               ),
             )
