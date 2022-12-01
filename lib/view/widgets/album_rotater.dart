@@ -9,14 +9,15 @@ class AlbumRotator extends StatefulWidget {
   State<AlbumRotator> createState() => _AlbumRotatorState();
 }
 
-class _AlbumRotatorState extends State<AlbumRotator> with SingleTickerProviderStateMixin{
-
+class _AlbumRotatorState extends State<AlbumRotator>
+    with SingleTickerProviderStateMixin {
   late AnimationController animationController;
 
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(vsync: this,duration: Duration(seconds: 5));
+    animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 5));
     animationController.forward();
     animationController.repeat();
   }
@@ -30,7 +31,7 @@ class _AlbumRotatorState extends State<AlbumRotator> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return RotationTransition(
-      turns: Tween(begin: 0.0,end: 1.0).animate(animationController),
+      turns: Tween(begin: 0.0, end: 1.0).animate(animationController),
       child: SizedBox(
         height: 70,
         width: 70,
@@ -47,12 +48,9 @@ class _AlbumRotatorState extends State<AlbumRotator> with SingleTickerProviderSt
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(35),
-                child: const Image(
-                  //NetworkImage(profilePicUrl),
-                  image: NetworkImage(
-                    "https://www.freepik.com/premium-vector/person-avatar-design_3600045.htm",
-                  ),
+                child: Image(
                   fit: BoxFit.cover,
+                  image: NetworkImage(widget.profilePicUrl),
                 ),
               ),
             ),
