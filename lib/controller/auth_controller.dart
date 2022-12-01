@@ -88,6 +88,7 @@ class AuthController extends GetxController {
 
   //User State persistence
   late Rx<User?> _user;
+  User get user => _user.value!;
 
   @override
   void onReady() {
