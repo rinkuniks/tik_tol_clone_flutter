@@ -106,4 +106,9 @@ class AuthController extends GetxController {
       Get.offAll(() => HomeScreen());
     }
   }
+
+  signOut(){
+    FirebaseAuth.instance.signOut();
+    Get.offAll(LoginScreen());
+  }
 }

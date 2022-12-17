@@ -1,8 +1,10 @@
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tik_tol_clone_flutter/view/screens/add_video.dart';
 import 'package:tik_tol_clone_flutter/view/screens/display_screen.dart';
+import 'package:tik_tol_clone_flutter/view/screens/profile_screen.dart';
 import 'package:tik_tol_clone_flutter/view/screens/search_screen.dart';
 
 const backgroundColor = Colors.black;
@@ -14,7 +16,7 @@ var pageIndex = [
   SearchScreen(),
   AddVideoScreen(),
   Text('Messages'),
-  Text('Profile'),
+  ProfileScreen(uid: FirebaseAuth.instance.currentUser!.uid),
 ];
 
 getRandomColor() => [
