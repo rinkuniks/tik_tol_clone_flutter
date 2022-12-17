@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tik_tol_clone_flutter/model/user.dart';
+import 'package:tik_tol_clone_flutter/view/screens/profile_screen.dart';
 
 import '../../controller/search_user_controller.dart';
 
@@ -41,8 +42,11 @@ class SearchScreen extends StatelessWidget {
                   MyUser user = searchUserController.searchedUser[index];
                   return ListTile(
                     onTap: () {
-                      Get.snackbar('You Clicked ${user.name}',
-                          'Opening ProfilePage of it.');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ProfileScreen(uid: user.uid)));
                     },
                     leading: CircleAvatar(
                       backgroundImage: NetworkImage(user.profilePhoto),
