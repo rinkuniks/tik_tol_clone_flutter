@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tik_tol_clone_flutter/controller/profile_controller.dart';
+import 'package:tik_tol_clone_flutter/view/screens/home_screen.dart';
+
 import '../../controller/auth_controller.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -63,9 +65,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     height: 100,
                                     width: 100,
                                     placeholder: (context, url) =>
-                                    const CircularProgressIndicator(),
+                                        const CircularProgressIndicator(),
                                     errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
+                                        const Icon(Icons.error),
                                   ),
                                 )
                               ],

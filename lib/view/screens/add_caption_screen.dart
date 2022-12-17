@@ -27,6 +27,15 @@ class _AddCaptionScreenState extends State<AddCaptionScreen> {
   TextEditingController captionController = TextEditingController();
   VideoUploadController videoUploadController = Get.put(VideoUploadController());
 
+  Widget UploadContent = Text("Upload");
+
+  uploadVid(){
+    UploadContent = Text('Please wait...');
+    setState(() {
+
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -98,8 +107,7 @@ class _AddCaptionScreenState extends State<AddCaptionScreen> {
                     },
                     style:
                     ElevatedButton.styleFrom(primary: buttonColor),
-                    child: const Text(
-                        'Upload'),
+                    child: UploadContent,
                   ),
                 ],
               ),

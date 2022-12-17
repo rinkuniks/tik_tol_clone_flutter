@@ -24,17 +24,28 @@ class VideoController extends GetxController {
   }
 
   likedVideo(String id) async {
-    DocumentSnapshot documentSnapshot =
-        await FirebaseFirestore.instance.collection('videos').doc(id).get();
+    DocumentSnapshot doc =
+        await FirebaseFirestore.instance.collection("videos").doc(id).get();
     var uid = AuthController.instanse.user.uid;
-    if ((documentSnapshot.data() as dynamic)['likes'].contains(uid)) {
-      await FirebaseFirestore.instance.collection('videos').doc(id).update({
+    if ((doc.data() as dynamic)['likes'].contains(uid)) {
+      await FirebaseFirestore.instance.collection("videos").doc(id).update({
         'likes': FieldValue.arrayRemove([uid]),
       });
     } else {
-      await FirebaseFirestore.instance.collection('videos').doc(id).update({
+      await FirebaseFirestore.instance.collection("videos").doc(id).update({
         'likes': FieldValue.arrayUnion([uid]),
       });
     }
+  }
+
+  shareVideo(String vidId) async {
+    DocumentSnapshot doc =
+        await FirebaseFirestore.instance.collection("videos").doc(vidId).get();
+
+    int newShareCount = (doc.data() as dynamic)["shareCount"] + 1;
+    await FirebaseFirestore.instance
+        .collection("videos")
+        .doc(vidId)
+        .update({"shareCount": newShareCount});
   }
 }

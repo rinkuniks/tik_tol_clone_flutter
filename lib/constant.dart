@@ -15,7 +15,7 @@ var pageIndex = [
   DisplayVideoScreen(),
   SearchScreen(),
   AddVideoScreen(),
-  Text('Messages'),
+  Text('Coming soon in new Update!'),
   ProfileScreen(uid: FirebaseAuth.instance.currentUser!.uid),
 ];
 

@@ -1,11 +1,11 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tik_tol_clone_flutter/model/video.dart';
+import 'package:tik_tol_clone_flutter/view/screens/home_screen.dart';
 import 'package:uuid/uuid.dart';
 import 'package:video_compress/video_compress.dart';
 
@@ -40,7 +40,7 @@ class VideoUploadController extends GetxController {
           .set(video.toJson());
       Get.snackbar(
           "Video Uploaded Successfully", "Thank You Sharing Your Content");
-      Get.back();
+      Get.to(HomeScreen());
     } catch (e) {
       if (kDebugMode) {
         print("====$e");
